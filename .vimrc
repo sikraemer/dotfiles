@@ -138,6 +138,7 @@ autocmd FileType cpp set syntax=cpp.doxygen
 "---------------------------------------
 " Help filetype detection
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufFilePre,BufRead *.conf set filetype=conf " Overrule vim-bitbake
 autocmd BufNewFile,BufFilePre,BufRead .vimrc set filetype=vim
 
 "##############################################################################
@@ -247,4 +248,5 @@ nnoremap <F9> :YcmCompleter FixIt<CR>
 nnoremap <Leader>n :NERDTreeToggleFind<CR>
 
 "##############################################################################
+
 
