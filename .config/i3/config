@@ -190,8 +190,10 @@ bar {
   }
 }
 
- 
 bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'DejaVu Sans Monor-10' -p '%'"
+
+exec --no-start-id xsetroot -solid "#282A36"
+
 #-------------------------------------------------
 # Assign windows to workspaces
 assign [class="vpnui"] $workspace_utils
@@ -199,6 +201,6 @@ assign [class="vpnui"] $workspace_utils
 
 #-------------------------------------------------
 # Enable vmware support
-exec vmware-user || true
+exec --no-start-id vmware-user || true
 
 
