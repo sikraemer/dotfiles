@@ -93,11 +93,12 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 set $workspace_main  "1: Main"
+set $workspace_web   "2: Web"
 set $workspace_utils "X: Utils"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace_main
-bindsym $mod+2 workspace 2
+bindsym $mod+2 workspace $workspace_web
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
@@ -109,7 +110,7 @@ bindsym $mod+0 workspace $workspace_utils
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace_main
-bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+2 move container to workspace $workspace_web
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
@@ -192,7 +193,7 @@ bar {
 
 bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'DejaVu Sans Monor-10' -p '%'"
 
-exec --no-start-id xsetroot -solid "#282A36"
+exec xsetroot -solid "#282A36"
 
 #-------------------------------------------------
 # Assign windows to workspaces
@@ -201,6 +202,6 @@ assign [class="vpnui"] $workspace_utils
 
 #-------------------------------------------------
 # Enable vmware support
-exec --no-start-id vmware-user || true
+exec vmware-user || true
 
 
