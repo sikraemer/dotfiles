@@ -40,6 +40,8 @@ Plugin 'airblade/vim-gitgutter' " Display changes via git
 Plugin 'airblade/vim-rooter' " Set working directory to project root (.vimrc)
 Plugin 'krisajenkins/vim-projectlocal' " Use project local vimrc
 
+Plugin 'vim/killersheep' " Killersheep game (vim 8.2+)
+
 call vundle#end()
 filetype plugin indent on
 
