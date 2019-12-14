@@ -1,8 +1,26 @@
 # vim
 Use vim as an IDE (mainly for C++).
 
-These settings were tested with vim 8.1 and gdb 8.1 on Ubuntu 16.04 and Ubuntu 18.04.
+These settings were tested with vim 8.2 and gdb 8.2 on Ubuntu 16.04 and Ubuntu 18.04.
 vim must have been compiled with `+python3` and `+terminal`.
+
+If you plan on building vim on your own, this is the current configuration I am using:
+```bash
+git clone https://github.com/vim/vim.git
+cd vim
+./configure \
+    --enable-cscope \
+    --enable-gnome-check \
+    --enable-gtk2-check \
+    --enable-gui=auto \
+    --enable-multibyte \
+    --enable-python3interp \
+    --with-features=huge \
+    --with-x \
+    --enable-fail-if-missing
+make
+sudo make install
+```
 
 ## Dependencies
 
@@ -10,7 +28,7 @@ vim must have been compiled with `+python3` and `+terminal`.
 The plugin [`YouCompleteMe`](https://github.com/Valloric/YouCompleteMe) requires the following packages to be installed.
 
 ```bash
-sudo apt install build-essential cmake python3-dev vim-gui-common vim-runtime
+sudo apt install build-essential cmake python3-dev
 ```
 
 ### Configure vim-airline
