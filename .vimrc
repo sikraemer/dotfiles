@@ -18,6 +18,8 @@ call vundle#begin('~/.vim/bundle/')
 
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required 
 
+Plugin 'dracula/vim', { 'name': 'dracula' } " dracula theme
+
 Plugin 'vim-airline/vim-airline' " Better tab bar and status line
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive' " Show git branch in airline
@@ -144,6 +146,7 @@ autocmd FileType cpp set syntax=cpp.doxygen
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufFilePre,BufRead *.conf set filetype=conf " Overrule vim-bitbake
 autocmd BufNewFile,BufFilePre,BufRead .vimrc set filetype=vim
+autocmd BufNewFile,BufFilePre,BufRead *.tpp set filetype=cpp
 
 "##############################################################################
 
@@ -151,7 +154,9 @@ autocmd BufNewFile,BufFilePre,BufRead .vimrc set filetype=vim
 " Configure YouCompleteMe
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_filetype_blacklist={'tagbar' : 1,'nerdtree' : 1}
-let g:ycm_use_clangd="Never" " clangd support is still experimental
+let g:ycm_use_clangd=0
+" let g:ycm_clangd_args=['-j=8']
+let g:ycm_semantic_triggers = {'cpp' : ['re!.'],'c++' : ['re!.']}
 autocmd BufRead,BufNewFile /usr/include/* set ft=c
 autocmd BufRead,BufNewFile /usr/include/c++/* set ft=cpp
 
