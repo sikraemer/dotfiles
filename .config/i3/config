@@ -199,6 +199,9 @@ exec xsetroot -solid "#282A36"
 # Assign windows to workspaces
 assign [class="vpnui"] $workspace_utils
 
+#------------------------------------------------
+# Custom window options
+for_window [class="Screenkey"] floating enable
 
 #-------------------------------------------------
 # Enable vmware support
