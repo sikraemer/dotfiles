@@ -267,7 +267,7 @@ nnoremap <F8> :Stop<CR>
 nnoremap <F12>   :YcmCompleter GoTo<CR>
 nnoremap <S-F12> :YcmCompleter GoToReferences<CR>
 nnoremap <F9>    :YcmCompleter FixIt<CR>
-nnoremap <S-F9>  :YcmCompleter RefactorRename<CR>
+nnoremap <S-F9>  :YcmCompleter RefactorRename 
 
 "---------------------------------------
 " Key bindings for NERDTree
