@@ -45,8 +45,6 @@ Plugin 'mthiede/rtext-vim-plugin' " Support for rtext files
 
 Plugin 'vim/killersheep' " Killersheep game (vim 8.2+)
 
-Plugin 'tpope/vim-cucumber' " Cucumber/Behave
-
 call vundle#end()
 filetype plugin indent on
 
