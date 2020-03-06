@@ -15,6 +15,7 @@ cd vim
     --enable-gui=auto \
     --enable-multibyte \
     --enable-python3interp \
+    --enable-rubyinterp \
     --with-features=huge \
     --with-x \
     --enable-fail-if-missing

@@ -34,13 +34,18 @@ Plugin 'octol/vim-cpp-enhanced-highlight' " Better highlighting for C++
 Plugin 'kergoth/vim-bitbake' " Better highlighting for BitBake
 
 Plugin 'rhysd/vim-clang-format' " Clang-Format support
+Plugin 'tell-k/vim-autopep8' " Python autopep support
 
 Plugin 'airblade/vim-gitgutter' " Display changes via git
 
 Plugin 'airblade/vim-rooter' " Set working directory to project root (.vimrc)
 Plugin 'krisajenkins/vim-projectlocal' " Use project local vimrc
 
+Plugin 'mthiede/rtext-vim-plugin' " Support for rtext files
+
 Plugin 'vim/killersheep' " Killersheep game (vim 8.2+)
+
+Plugin 'tpope/vim-cucumber' " Cucumber/Behave
 
 call vundle#end()
 filetype plugin indent on
@@ -145,10 +150,12 @@ autocmd FileType cpp set syntax=cpp.doxygen
 
 "---------------------------------------
 " Help filetype detection
-autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-autocmd BufNewFile,BufFilePre,BufRead *.conf set filetype=conf " Overrule vim-bitbake
-autocmd BufNewFile,BufFilePre,BufRead .vimrc set filetype=vim
-autocmd BufNewFile,BufFilePre,BufRead *.tpp set filetype=cpp
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.conf set filetype=conf " Overrule vim-bitbake
+autocmd BufNewFile,BufReadPost .vimrc set filetype=vim
+autocmd BufNewFile,BufReadPost *.tpp set filetype=cpp
+autocmd BufNewFile,BufReadPost *.rtext set filetype=rtext
+autocmd BufNewFile,BufReadPost *.som set filetype=rtext
 
 "##############################################################################
 
@@ -156,8 +163,11 @@ autocmd BufNewFile,BufFilePre,BufRead *.tpp set filetype=cpp
 " Configure YouCompleteMe
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_filetype_blacklist={'tagbar' : 1,'nerdtree' : 1}
-let g:ycm_use_clangd=0
-" let g:ycm_clangd_args=['-j=8']
+let g:ycm_use_clangd=1
+let g:ycm_clangd_args=['--clang-tidy',
+                      \'--completion-style=detailed',
+                      \'--suggest-missing-includes',
+                      \'--background-index']
 let g:ycm_semantic_triggers = {'cpp' : ['re!.'],'c++' : ['re!.']}
 autocmd BufRead,BufNewFile /usr/include/* set ft=c
 autocmd BufRead,BufNewFile /usr/include/c++/* set ft=cpp
@@ -194,7 +204,7 @@ endfunction
 command NERDTreeToggleFind :call _NERDTreeToggleFind()
 
 "---------------------------------------
-" Configure AutoFormatter
+" Configure AutoFormatter for C++ and Protobuf
 let g:clang_format#command = "/usr/bin/clang-format"
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
@@ -202,6 +212,11 @@ let g:clang_format#auto_format_on_insert_leave = 0
 let g:clang_format#auto_formatexpr = 1
 let g:clang_format#enable_fallback_style = 1
 let g:clang_format#fallback_style = "None"
+
+"---------------------------------------
+" Configure AutoFormatter for Python
+let g:autopep8_disable_show_diff = 1
+let g:autopep8_on_save = 0
 
 "---------------------------------------
 " Configure GitGutter
@@ -230,7 +245,7 @@ let g:projectlocal_project_markers = ['.vimrc']
 " Keymappings for tabs and buffers
 nnoremap <C-n>       :enew    <CR>
 nnoremap <C-t>       :tabnew  <CR>
-nnoremap <C-x>       :bp\|bd #<CR>
+nnoremap <Leader>q   :bp\|bd #<CR>
 nnoremap <S-A-Left>  :tabprev   <CR>
 nnoremap <S-A-Right> :tabnext   <CR>
 nnoremap <A-Left>    :bprev   <CR>
