@@ -266,8 +266,10 @@ nnoremap <F8> :Stop<CR>
 
 "---------------------------------------
 " Key bindings for TermDebug
-nnoremap <F12> :YcmCompleter GoTo<CR>
-nnoremap <F9> :YcmCompleter FixIt<CR>
+nnoremap <F12>   :YcmCompleter GoTo<CR>
+nnoremap <S-F12> :YcmCompleter GoToReferences<CR>
+nnoremap <F9>    :YcmCompleter FixIt<CR>
+nnoremap <S-F9>  :YcmCompleter RefactorRename<CR>
 
 "---------------------------------------
 " Key bindings for NERDTree

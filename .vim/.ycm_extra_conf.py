@@ -1,5 +1,8 @@
 import os
 import ycm_core
+import logging
+
+logger = logging.getLogger('YCM_EXTRA_CONF')
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
@@ -55,7 +58,7 @@ def GetCompilationInfoForFile( filename ):
       replacement_file = basename + extension
       if os.path.exists( replacement_file ):
         compilation_info = database.GetCompilationInfoForFile( replacement_file )
-        if compilation_info.compiler_flags_:
+        if compilation_info and compilation_info.compiler_flags_:
           return compilation_info
     return None
   return database.GetCompilationInfoForFile( filename )
@@ -63,8 +66,11 @@ def GetCompilationInfoForFile( filename ):
 
 # This is the entry point; this function is called by ycmd to produce flags for
 # a file.
-def FlagsForFile( filename, **kwargs ):
+def Settings( filename, **kwargs ):
+  logger.info("Settings: %s" % filename)
+
   if not database:
+    logger.info("No database - using default flags")
     return {
       'flags': DEFAULT_FLAGS,
       'include_paths_relative_to_dir': DirectoryOfThisScript()
@@ -72,8 +78,13 @@ def FlagsForFile( filename, **kwargs ):
 
   compilation_info = GetCompilationInfoForFile( filename )
   if not compilation_info:
-    return None
+    logger.info("No compilation info - using default flags")
+    return {
+      'flags': DEFAULT_FLAGS,
+      'include_paths_relative_to_dir': DirectoryOfThisScript()
+    }
 
+  logger.info("Using flags from compile_commands.info")
   # Bear in mind that compilation_info.compiler_flags_ does NOT return a
   # python list, but a "list-like" StringVec object.
   flags = list( compilation_info.compiler_flags_ )
