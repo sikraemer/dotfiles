@@ -35,6 +35,7 @@ Plugin 'kergoth/vim-bitbake' " Better highlighting for BitBake
 
 Plugin 'rhysd/vim-clang-format' " Clang-Format support
 Plugin 'tell-k/vim-autopep8' " Python autopep support
+Plugin 'tell-k/vim-autoflake' " Python autoflake support
 
 Plugin 'airblade/vim-gitgutter' " Display changes via git
 
@@ -117,7 +118,8 @@ set wildmenu
 
 "---------------------------------------
 " Nicer autocomplete menu
-set completeopt=menuone
+set completeopt=longest,menuone,popup
+set completepopup=border:off,highlight:Pmenu
 
 "---------------------------------------
 " Make Termdebug split horizontally if the window size is wide enough
@@ -160,10 +162,12 @@ autocmd BufNewFile,BufReadPost *.som set filetype=rtext
 "---------------------------------------
 " Configure YouCompleteMe
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_filetype_blacklist={'tagbar' : 1,'nerdtree' : 1}
 let g:ycm_use_clangd=1
 let g:ycm_clangd_args=['--clang-tidy',
                       \'--completion-style=detailed',
+                      \'--header-insertion=never',
                       \'--suggest-missing-includes',
                       \'--background-index']
 let g:ycm_semantic_triggers = {'cpp' : ['re!.'],'c++' : ['re!.']}
@@ -215,6 +219,9 @@ let g:clang_format#fallback_style = "None"
 " Configure AutoFormatter for Python
 let g:autopep8_disable_show_diff = 1
 let g:autopep8_on_save = 0
+let g:autoflake_disable_show_diff = 1
+let g:autoflake_on_save = 0
+
 
 "---------------------------------------
 " Configure GitGutter
