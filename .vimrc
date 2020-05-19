@@ -25,6 +25,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive' " Show git branch in airline
 
 Plugin 'Valloric/YouCompleteMe' " C/C++/Python/... code completion and error highlighting
+Plugin 'habamax/vim-asciidoctor' " Better Asciidoc support
 
 Plugin 'scrooloose/nerdtree' " A filetree
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -55,6 +56,11 @@ filetype plugin indent on
 " Enable project specific vimrc configurations
 " set exrc
 " set secure
+
+"---------------------------------------
+" Enable dracula theme correctly
+set termguicolors
+colorscheme dracula
 
 "---------------------------------------
 " Allow hidden buffers
@@ -163,6 +169,8 @@ autocmd BufNewFile,BufReadPost *.som set filetype=rtext
 " Configure YouCompleteMe
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_filetype_blacklist={'tagbar' : 1,'nerdtree' : 1}
 let g:ycm_use_clangd=1
 let g:ycm_clangd_args=['--clang-tidy',
@@ -173,6 +181,12 @@ let g:ycm_clangd_args=['--clang-tidy',
 let g:ycm_semantic_triggers = {'cpp' : ['re!.'],'c++' : ['re!.']}
 autocmd BufRead,BufNewFile /usr/include/* set ft=c
 autocmd BufRead,BufNewFile /usr/include/c++/* set ft=cpp
+
+"---------------------------------------
+" Configure vim-Asciidoctor
+let g:asciidoctor_syntax_conceal = 1
+let g:asciidoctor_fenced_languages = ['python', 'c', 'cpp', 'javascript', 'bash']
+
 
 "---------------------------------------
 " Configure Airline
@@ -256,10 +270,12 @@ nnoremap <S-A-Right> :tabnext   <CR>
 nnoremap <A-Left>    :bprev   <CR>
 nnoremap <A-Right>   :bnext   <CR>
 
+
 "--------------------------------------
 " Keymappings for highlighting toggles
+nnoremap <silent> <F1> :set spell!<CR>
 nnoremap <silent> <F2> :set hlsearch!<CR>
-nnoremap <silent> <F3> :set spell!<CR>
+nnoremap <silent> <F3> /<C-r><C-w>:set hlsearch<CR>
 nnoremap <silent> <F4> :if exists("g:syntax_on") \| syntax off \| else \| syntax on \| endif<CR>
 
 "---------------------------------------
