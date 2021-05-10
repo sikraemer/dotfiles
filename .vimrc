@@ -16,7 +16,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin('~/.vim/bundle/')
 
-Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required 
+Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
 Plugin 'dracula/vim', { 'name': 'dracula' } " dracula theme
 
@@ -46,6 +46,8 @@ Plugin 'krisajenkins/vim-projectlocal' " Use project local vimrc
 Plugin 'mthiede/rtext-vim-plugin' " Support for rtext files
 
 Plugin 'vim/killersheep' " Killersheep game (vim 8.2+)
+
+Plugin 'wincent/command-t' " Fuzzyfind
 
 call vundle#end()
 filetype plugin indent on
@@ -162,12 +164,14 @@ autocmd BufNewFile,BufReadPost .vimrc set filetype=vim
 autocmd BufNewFile,BufReadPost *.tpp set filetype=cpp
 autocmd BufNewFile,BufReadPost *.rtext set filetype=rtext
 autocmd BufNewFile,BufReadPost *.som set filetype=rtext
+autocmd BufNewFile,BufReadPost Jenkinsfile* set filetype=groovy
 
 "##############################################################################
 
 "---------------------------------------
 " Configure YouCompleteMe
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -220,6 +224,12 @@ endfunction
 command NERDTreeToggleFind :call _NERDTreeToggleFind()
 
 "---------------------------------------
+" Configure netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle=3
+let g:netrw_winsize=15
+
+"---------------------------------------
 " Configure AutoFormatter for C++ and Protobuf
 let g:clang_format#command = "/usr/bin/clang-format"
 let g:clang_format#detect_style_file = 1
@@ -252,7 +262,7 @@ let g:rooter_patterns = ['.vimrc']
 
 "---------------------------------------
 " Configure VimRooter
-let g:projectlocal_project_markers = ['.vimrc']
+let g:projectlocal_project_markers = ['.vimrc', '.git']
 
 "---------------------------------------
 " Configure TermDebug
