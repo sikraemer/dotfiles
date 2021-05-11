@@ -165,7 +165,7 @@ bindsym $mod+r mode "resize"
 #-------------------------------------------------
 # Customization (Dracula theme)
 
-font pango:DejaVu Sans Mono 10
+font pango:Ubuntu Mono for Powerline 11
 
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
