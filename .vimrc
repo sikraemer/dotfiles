@@ -18,21 +18,20 @@ call vundle#begin('~/.vim/bundle/')
 
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
-Plugin 'dracula/vim', { 'name': 'dracula' } " dracula theme
+"Plugin 'dracula/vim', { 'name': 'dracula' } " dracula theme
+Plugin 'lifepillar/vim-solarized8' " solarized theme
+"Plugin 'joshdick/onedark.vim' "one dark theme
 
 Plugin 'vim-airline/vim-airline' " Better tab bar and status line
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive' " Show git branch in airline
 
 Plugin 'Valloric/YouCompleteMe' " C/C++/Python/... code completion and error highlighting
-Plugin 'habamax/vim-asciidoctor' " Better Asciidoc support
 
 Plugin 'scrooloose/nerdtree' " A filetree
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-Plugin 'octol/vim-cpp-enhanced-highlight' " Better highlighting for C++
-
-Plugin 'kergoth/vim-bitbake' " Better highlighting for BitBake
+Plugin 'sheerun/vim-polyglot' " Better syntax highlighting
 
 Plugin 'rhysd/vim-clang-format' " Clang-Format support
 Plugin 'tell-k/vim-autopep8' " Python autopep support
@@ -45,12 +44,15 @@ Plugin 'krisajenkins/vim-projectlocal' " Use project local vimrc
 
 Plugin 'mthiede/rtext-vim-plugin' " Support for rtext files
 
-Plugin 'vim/killersheep' " Killersheep game (vim 8.2+)
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzyfind
+Plugin 'junegunn/fzf.vim'
 
-Plugin 'wincent/command-t' " Fuzzyfind
+Plugin 'ryanoasis/vim-devicons' " Nice Icons
 
 call vundle#end()
 filetype plugin indent on
+
+source /home/devel/.ycm/lsp-examples/vimrc.generated
 
 "##############################################################################
 
@@ -61,8 +63,16 @@ filetype plugin indent on
 
 "---------------------------------------
 " Enable dracula theme correctly
-set termguicolors
-colorscheme dracula
+set t_Co=256
+set background=dark
+if (has("termguicolors"))
+  set termguicolors
+endif
+"let g:dracula_colorterm = 0
+"colorscheme dracula
+colorscheme solarized8_flat
+"let g:onedark_termcolors=256
+"colorscheme onedark
 
 "---------------------------------------
 " Allow hidden buffers
@@ -142,10 +152,6 @@ set expandtab
 set smarttab
 
 "---------------------------------------
-" Enable 256 colors
-set t_Co=256
-
-"---------------------------------------
 " Allow syntax highlighting to take up to 10 seconds
 set redrawtime=10000
 
@@ -195,7 +201,9 @@ let g:asciidoctor_fenced_languages = ['python', 'c', 'cpp', 'javascript', 'bash'
 "---------------------------------------
 " Configure Airline
 let g:airline_powerline_fonts=1
-let g:airline_theme='dracula'
+"let g:airline_theme='dracula'
+let g:airline_theme='solarized'
+"let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#show_tabs=1
 let g:airline#extensions#tabline#show_buffers=1
@@ -222,6 +230,7 @@ function _NERDTreeToggleFind()
     endif
 endfunction
 command NERDTreeToggleFind :call _NERDTreeToggleFind()
+let NERDTreeGitStatusPorcelainVersion=1
 
 "---------------------------------------
 " Configure netrw
@@ -275,8 +284,8 @@ let g:projectlocal_project_markers = ['.vimrc', '.git']
 nnoremap <C-n>       :enew    <CR>
 nnoremap <C-t>       :tabnew  <CR>
 nnoremap <Leader>q   :bp\|bd #<CR>
-nnoremap <S-A-Left>  :tabprev   <CR>
-nnoremap <S-A-Right> :tabnext   <CR>
+nnoremap <S-A-Left>  :tabprev <CR>
+nnoremap <S-A-Right> :tabnext <CR>
 nnoremap <A-Left>    :bprev   <CR>
 nnoremap <A-Right>   :bnext   <CR>
 
@@ -285,7 +294,7 @@ nnoremap <A-Right>   :bnext   <CR>
 " Keymappings for highlighting toggles
 nnoremap <silent> <F1> :set spell!<CR>
 nnoremap <silent> <F2> :set hlsearch!<CR>
-nnoremap <silent> <F3> /<C-r><C-w>:set hlsearch<CR>
+nnoremap <silent> <F3> :set hlsearch<CR>/<C-r><C-w><CR><S-n>
 nnoremap <silent> <F4> :if exists("g:syntax_on") \| syntax off \| else \| syntax on \| endif<CR>
 
 "---------------------------------------

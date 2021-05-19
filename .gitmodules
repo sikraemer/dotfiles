@@ -4,3 +4,9 @@
 [submodule ".themes/Ant-Dracula"]
 	path = .themes/Ant-Dracula
 	url = https://github.com/EliverLara/Ant-Dracula.git
+[submodule ".fonts/ubuntu-mono-powerline-ttf"]
+	path = .fonts/ubuntu-mono-powerline-ttf
+	url = https://github.com/pdf/ubuntu-mono-powerline-ttf
+[submodule ".fonts/nerd-fonts"]
+	path = .fonts/nerd-fonts
+	url = https://github.com/ryanoasis/nerd-fonts.git
