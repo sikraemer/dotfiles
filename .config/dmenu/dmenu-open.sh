@@ -2,7 +2,8 @@
 
 declare -A ENTRIES=(
   [browser]="firefox"
-  [editor]="gedit"
+  [file-browser]="nautilus"
+  [editor]="alacritty -e vim"
   [terminal]="x-terminal-emulator"
   [vpn]="vpnui"
 )
@@ -10,7 +11,7 @@ declare -A ENTRIES=(
 CHOICE="$(printf "%s\n" "${!ENTRIES[@]}" | dmenu "$@")"
 if [ "${CHOICE}" != "" ]; then
   if [ -v ENTRIES[${CHOICE}] ]; then
-    exec "${ENTRIES[${CHOICE}]}"
+    exec ${ENTRIES[${CHOICE}]}
   else
     exec i3-nagbar -m "Unknown input ${CHOICE}"
   fi
