@@ -1,6 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPT_DIR}/dmenu-exec.inc.sh"
 
 declare -A ENTRIES=(
   [browser]="firefox"
@@ -9,4 +7,11 @@ declare -A ENTRIES=(
   [vpn]="vpnui"
 )
 
-dmenu_exec ENTRIES
+CHOICE="$(printf "%s\n" "${!ENTRIES[@]}" | dmenu "$@")"
+if [ "${CHOICE}" != "" ]; then
+  if [ -v ENTRIES[${CHOICE}] ]; then
+    exec "${ENTRIES[${CHOICE}]}"
+  else
+    exec i3-nagbar -m "Unknown input ${CHOICE}"
+  fi
+fi

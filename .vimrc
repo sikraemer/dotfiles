@@ -18,20 +18,18 @@ call vundle#begin('~/.vim/bundle/')
 
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
-"Plugin 'dracula/vim', { 'name': 'dracula' } " dracula theme
 Plugin 'lifepillar/vim-solarized8' " solarized theme
-"Plugin 'joshdick/onedark.vim' "one dark theme
 
 Plugin 'vim-airline/vim-airline' " Better tab bar and status line
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive' " Show git branch in airline
 
 Plugin 'Valloric/YouCompleteMe' " C/C++/Python/... code completion and error highlighting
+Plugin 'habamax/vim-asciidoctor' " Better Asciidoc support
+Plugin 'sheerun/vim-polyglot' " Better syntax highlighting
 
 Plugin 'scrooloose/nerdtree' " A filetree
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-Plugin 'sheerun/vim-polyglot' " Better syntax highlighting
 
 Plugin 'rhysd/vim-clang-format' " Clang-Format support
 Plugin 'tell-k/vim-autopep8' " Python autopep support
@@ -42,7 +40,7 @@ Plugin 'airblade/vim-gitgutter' " Display changes via git
 Plugin 'airblade/vim-rooter' " Set working directory to project root (.vimrc)
 Plugin 'krisajenkins/vim-projectlocal' " Use project local vimrc
 
-Plugin 'mthiede/rtext-vim-plugin' " Support for rtext files
+"Plugin 'mthiede/rtext-vim-plugin' " Support for rtext files
 
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzyfind
 Plugin 'junegunn/fzf.vim'
@@ -64,15 +62,11 @@ source /home/devel/.ycm/lsp-examples/vimrc.generated
 "---------------------------------------
 " Enable dracula theme correctly
 set t_Co=256
-set background=dark
 if (has("termguicolors"))
   set termguicolors
 endif
-"let g:dracula_colorterm = 0
-"colorscheme dracula
-colorscheme solarized8_flat
-"let g:onedark_termcolors=256
-"colorscheme onedark
+set background=dark
+colorscheme solarized8
 
 "---------------------------------------
 " Allow hidden buffers
@@ -201,9 +195,7 @@ let g:asciidoctor_fenced_languages = ['python', 'c', 'cpp', 'javascript', 'bash'
 "---------------------------------------
 " Configure Airline
 let g:airline_powerline_fonts=1
-"let g:airline_theme='dracula'
-let g:airline_theme='solarized'
-"let g:airline_theme='onedark'
+"let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#show_tabs=1
 let g:airline#extensions#tabline#show_buffers=1
@@ -280,15 +272,11 @@ let g:projectlocal_project_markers = ['.vimrc', '.git']
 "##############################################################################
 
 "--------------------------------------
-" Keymappings for tabs and buffers
+" Keymappings for buffers
 nnoremap <C-n>       :enew    <CR>
-nnoremap <C-t>       :tabnew  <CR>
 nnoremap <Leader>q   :bp\|bd #<CR>
-nnoremap <S-A-Left>  :tabprev <CR>
-nnoremap <S-A-Right> :tabnext <CR>
 nnoremap <A-Left>    :bprev   <CR>
 nnoremap <A-Right>   :bnext   <CR>
-
 
 "--------------------------------------
 " Keymappings for highlighting toggles
@@ -296,6 +284,11 @@ nnoremap <silent> <F1> :set spell!<CR>
 nnoremap <silent> <F2> :set hlsearch!<CR>
 nnoremap <silent> <F3> :set hlsearch<CR>/<C-r><C-w><CR><S-n>
 nnoremap <silent> <F4> :if exists("g:syntax_on") \| syntax off \| else \| syntax on \| endif<CR>
+
+"--------------------------------------
+" Keymappings for fzf
+nnoremap <C-f> :Files<CR>
+nnoremap <C-t> :Tags<CR>
 
 "---------------------------------------
 " Key bindings for TermDebug

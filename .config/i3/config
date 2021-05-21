@@ -163,50 +163,13 @@ bindsym $mod+r mode "resize"
 # }
 
 #-------------------------------------------------
-#-------------------------------------------------
-
-##-------------------------------------------------
-## Customization (Dracula theme)
-#
-##font pango:Ubuntu Mono for Powerline 11
-#font pango:Fira Code Nerd Font Mono 10
-#
-## class                 border  bground text    indicator child_border
-#client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-#client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-#client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-#client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-#client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-#
-#client.background       #F8F8F2
-#
-#bar {
-#  status_command i3status
-#  colors {
-#    background #282A36
-#    statusline #F8F8F2
-#    separator  #44475A
-#
-#    focused_workspace  #44475A #44475A #F8F8F2
-#    active_workspace   #282A36 #44475A #F8F8F2
-#    inactive_workspace #282A36 #282A36 #BFBFBF
-#    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-#    binding_mode       #FF5555 #FF5555 #F8F8F2
-#  }
-#}
-#
-#bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'Fira Code Nerd Font Mono-10' -p '%'"
-#
-#exec xsetroot -solid "#282A36"
-#
-##-------------------------------------------------
 
 #-------------------------------------------------
 # Customization (Solarized Dark theme)
 
 font pango:Fira Code Nerd Font Mono 10
 
-# class                 border  bground text    indicator child_border
+# class                 border  bground text    indicator
 client.focused          #002b36 #586e75 #fdf6e3 #268bd2
 client.focused_inactive #002b36 #073642 #839496 #073642
 client.unfocused        #002b36 #073642 #839496 #073642
@@ -220,14 +183,17 @@ bar {
     background #002b36
     statusline #839496
     separator  #586e75
-    focused_workspace  #b58900 #b58900 #002b36
+    # class            border  bground text
+    focused_workspace  #b58900 #b58900 #fdf6e3
     active_workspace   #586e75 #586e75 #002b36
     inactive_workspace #073642 #002b36 #839496
     urgent_workspace   #dc322f #dc322f #fdf6e3
   }
 }
 
+bindsym $mod+d exec "dmenu_run -nf '#839496' -nb '#002b36' -sb '#586e75' -sf '#fdf6e3' -fn 'Fira Code Nerd Font Mono-11' -p '>'"
 bindsym $mod+o exec "${HOME}/.config/i3/dmenu/dmenu-open.sh -nf '#839496' -nb '#002b36' -sb '#586e75' -sf '#fdf6e3' -fn 'Fira Code Nerd Font Mono-11' -p '>'"
+bindsym $mod+p exec "${HOME}/.config/i3/dmenu/dmenu-password.sh -nf '#839496' -nb '#002b36' -sb '#586e75' -sf '#fdf6e3' -fn 'Fira Code Nerd Font Mono-11' -p '>'"
 
 exec xsetroot -solid "#002b36"
 
@@ -243,4 +209,6 @@ for_window [class="Screenkey"] floating enable
 # Enable vmware support
 exec vmware-user || true
 
-
+#-------------------------------------------------
+# Fix mouse scrolling issues
+exec imwheel -k
