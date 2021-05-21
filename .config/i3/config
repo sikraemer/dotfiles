@@ -192,8 +192,8 @@ bar {
 }
 
 bindsym $mod+d exec "dmenu_run -nf '#839496' -nb '#002b36' -sb '#586e75' -sf '#fdf6e3' -fn 'Fira Code Nerd Font Mono-11' -p '>'"
-bindsym $mod+o exec "${HOME}/.config/i3/dmenu/dmenu-open.sh -nf '#839496' -nb '#002b36' -sb '#586e75' -sf '#fdf6e3' -fn 'Fira Code Nerd Font Mono-11' -p '>'"
-bindsym $mod+p exec "${HOME}/.config/i3/dmenu/dmenu-password.sh -nf '#839496' -nb '#002b36' -sb '#586e75' -sf '#fdf6e3' -fn 'Fira Code Nerd Font Mono-11' -p '>'"
+bindsym $mod+o exec "${HOME}/.config/dmenu/dmenu-open.sh -nf '#839496' -nb '#002b36' -sb '#586e75' -sf '#fdf6e3' -fn 'Fira Code Nerd Font Mono-11' -p '>'"
+bindsym $mod+p exec "${HOME}/.config/dmenu/dmenu-password.sh -nf '#839496' -nb '#002b36' -sb '#586e75' -sf '#fdf6e3' -fn 'Fira Code Nerd Font Mono-11' -p '>'"
 
 exec xsetroot -solid "#002b36"
 
