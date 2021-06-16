@@ -176,6 +176,7 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_filetype_blacklist={'tagbar' : 1,'nerdtree' : 1}
+let g:ycm_auto_hover=''
 let g:ycm_use_clangd=1
 let g:ycm_clangd_args=['--clang-tidy',
                       \'--completion-style=detailed',
@@ -302,7 +303,7 @@ nnoremap <F8> :Stop<CR>
 nnoremap <F12>   :YcmCompleter GoTo<CR>
 nnoremap <S-F12> :YcmCompleter GoToReferences<CR>
 nnoremap <F9>    :YcmCompleter FixIt<CR>
-nnoremap <S-F9>  :YcmCompleter RefactorRename 
+nnoremap <S-F9>  :YcmCompleter RefactorRename <C-r><C-w>
 
 "---------------------------------------
 " Key bindings for NERDTree
